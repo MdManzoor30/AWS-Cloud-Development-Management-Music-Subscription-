@@ -1,0 +1,26 @@
+<!-- query_results.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Query Results</title>
+    <!-- Add your stylesheets here -->
+</head>
+<body>
+    <div class="query-results">
+        <h2>Query Results</h2>
+        {% for music in results %}
+        <div class="music-item">
+            <p>Title: {{ music['title'] }}</p>
+            <p>Artist: {{ music['artist'] }}</p>
+            <p>Year: {{ music['year'] }}</p>
+            <!-- Image logic will go here -->
+            <!-- Placeholder for Subscribe functionality -->
+        </div>
+        {% else %}
+        <p>No result is retrieved. Please query again.</p>
+        {% endfor %}
+    </div>
+    <a href="{{ url_for('main_page') }}">Back to Main Page</a>
+</body>
+</html>
