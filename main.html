@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    </head>
+<body>
+    <div class="form-container">
+        <!-- User Area -->
+        <div class="user-area">
+            <h2>Welcome, {{ user_name }}!</h2>
+            <p>Welcome to the Music Subscription Service!</p>
+        </div>
+
+	<div class="subscription-area">
+    {% for music in subscribed_music %}
+        <div class="music-item">
+            <p>Title: {{ music.title }}</p>
+            <p>Artist: {{ music.artist }}</p>
+            <p>Year: {{ music.year }}</p>
+            <!-- Assuming you're not showing the image for now -->
+            <form action="{{ url_for('remove_subscription') }}" method="post">
+                <input type="hidden" name="email" value="{{ user_email }}">
+                <input type="hidden" name="music_title" value="{{ music.title }}">
+                <button type="submit">Remove</button>
+            </form>
+        </div>
+    {% endfor %}
+</div>
+
+	
+        <!-- Query Area -->
+        <div class="query-area">
+            <h3>Search Music</h3>
+            <form action="/query" method="post">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title">
+                <label for="year">Year:</label>
+                <input type="text" id="year" name="year">
+                <label for="artist">Artist:</label>
+                <input type="text" id="artist" name="artist">
+                <button type="submit">Query</button>
+            </form>
+        </div>
+
+        <a href="/logout">Logout</a>
+    </div>
+</body>
+</html>
